@@ -27,9 +27,17 @@ double getIntValueFromUser(){
 }
 
 void casesForBillSplitting(){
-    std::cout << "What options best describe this bill splitting? ";
-    std::cout << "1) Split evenly";
-    std::cout << "2) Spit by bill";
+    std::cout << "What options best describe this bill splitting? Enter the number of choice";
+    std::cout << "1. Split evenly";
+    std::cout << "2. Spit by bill";
+
+    int option;
+    std::cin >> option;
+    switch (option) {
+        case 1: 
+        case 2:
+        
+    }
 }
 
 int main(){
