@@ -13,6 +13,7 @@ int main() {
     cout << "Hello World\n"; //this is line comment
     cout << "\tI'm a C++ program\n";
     int a = 3;
+    int num{ }; //→ This declares an integer variable num and value-initializes it to 0.
     int c(4);
     int res;
     int b(5);
