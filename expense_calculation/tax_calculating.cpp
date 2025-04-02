@@ -6,7 +6,10 @@
 Objective: Calculate the tax and tip of a bill when hanging out with friends
 There are 2 cases:
 1. Split evenly
-2. Spit by individual
+2. Spit by individual //make sure only the one who paid is required 
+
+
+fuckkk most of the time tax is number LOLLLLL
 
 */
 
@@ -39,11 +42,9 @@ int main(){
     double receipt_total_bill;
     double individual_bill;
     int people;
-    
 
+    bool isQuit = true;
 
-            
-            
     std::cout << "How many people join?";
     people = getIntValueFromUser();
 
@@ -52,7 +53,7 @@ int main(){
     bill = getDoubleValueFromUser();
 
             
-    std::cout << "How much tax does this bill take in percentage?";
+    std::cout << "How much tax does this bill take, in percentage?";
     tax = getDoubleValueFromUser();
             
      //this case did not count for what if the tip is not in percentage
@@ -81,6 +82,7 @@ int main(){
             //split by individual => asking for total bill, tax, tip, and number of people
             //asking for each person's bill, using for loop to ask for each person's bill
             //I will use a hashmap, storing each person name with their bill
+            // map<std::string, double> person_bill
 
 
             //declare variables for calculating each person's bill
@@ -95,19 +97,24 @@ int main(){
                 std::cout << "Bill (in dollars): " << std::endl;
                 std::cin >> individual_bill;
                 //hashmap map name with individual bill
+                individual_bill = individual_bill + (individual_bill * tax)/100 + (tip*individual_bill)/100;
                 person_bill[name] = individual_bill;
-                total_bill += individual_bill; //khi ma co total bill roi thi compare voi cai total bill trong recipt co
+                total_bill += individual_bill; //khi ma co total moi bill roi thi compare voi cai total bill trong recipt co
             }
 
             if(total_bill != receipt_total_bill){
                 std::cout << "The total bill in the receipt is not equal to the total bill we calculated\n";
+                std::cout << total_bill;
+                std::cout << receipt_total_bill;
+
+                
                 //thằng nào đó sinh nhật hay gì đó được bao so the number of people who pay the bill will be different and there should be extra added on to each bill
                 std::cout << "Split the rest of the bill by individual \n";
                 total_bill = receipt_total_bill - total_bill;
                 std::cout << "The rest of the bill is " << total_bill << " dollars\n";
                 std::cout << "Split the rest of the bill by individual \n";
-                double individual_bill_after_split = total_bill/people;
-                
+                double individual_bill_after_split = total_bill/people; 
+            
                 //recalculate each person's bill
                 for(auto &pair : person_bill){
                     pair.second += individual_bill_after_split;
@@ -115,9 +122,9 @@ int main(){
                 }
 
             }
-                            //calculate including tax and tip
+
             for(auto &pair : person_bill){
-                pair.second += tax*pair.second + tip*pair.second;
+                std::cout << pair.first << " should now pay " << pair.second << " dollars\n";
             }
             break;
         }
